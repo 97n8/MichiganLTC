@@ -1,0 +1,36 @@
+# Local environment files
+.env
+.env.*
+*.env.local
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Node dependencies and build output
+node_modules/
+build/
+dist/
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.tmp/
+.temp/
+tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
