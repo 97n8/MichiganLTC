@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Michigan LTC Network | Resource Recovery Corridor</title>
+  <meta name="description" content="Michigan LTC Network is building a governed resource recovery corridor for cleaner materials management, community benefit, and long-term industrial reuse." />
+  <style>
+    :root {
+      --navy: #092b5f;
+      --blue: #155aa8;
+      --green: #11843b;
+      --gold: #d7a842;
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --mist: #eef4f1;
+      --white: #ffffff;
+      --line: rgba(9, 43, 95, 0.14);
+      --shadow: 0 24px 60px rgba(9, 43, 95, 0.12);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #ffffff 0%, #f7faf8 52%, #edf5f0 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      font-size: 1.12rem;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--navy), var(--green));
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(17, 132, 59, 0.18);
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #314056;
+      font-weight: 650;
+      font-size: 0.94rem;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      background: var(--mist);
+      color: var(--navy);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--white) !important;
+      background: var(--green);
+      box-shadow: 0 10px 24px rgba(17, 132, 59, 0.22);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 86px 0 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--green);
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      color: var(--navy);
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 690px;
+      color: #334155;
+      font-size: clamp(1.1rem, 2vw, 1.32rem);
+      margin: 0 0 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+    }
+
+    .button.primary {
+      color: var(--white);
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .button.secondary {
+      color: var(--navy);
+      background: var(--white);
+      border-color: var(--line);
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+    }
+
+    .map-card {
+      min-height: 380px;
+      display: grid;
+      align-content: end;
+      gap: 18px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(17, 132, 59, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 40%, rgba(21, 90, 168, 0.16), transparent 36%),
+        linear-gradient(135deg, #ffffff, #edf6f1);
+    }
+
+    .route-line {
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--navy), var(--green));
+      position: relative;
+      margin: 36px 0 18px;
+    }
+
+    .route-line::before,
+    .route-line::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: var(--white);
+      border: 6px solid var(--green);
+      box-shadow: 0 0 0 8px rgba(17, 132, 59, 0.12);
+    }
+
+    .route-line::before {
+      left: 12%;
+      border-color: var(--navy);
+    }
+
+    .route-line::after {
+      right: 16%;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.55rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    section {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+
+    .section-head {
+      max-width: 790px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 220px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 38px rgba(9, 43, 95, 0.07);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: var(--mist);
+      color: var(--navy);
+      font-weight: 750;
+      font-size: 0.84rem;
+    }
+
+    .sites {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .site-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy), #0c457e);
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .site-card.green {
+      background: linear-gradient(135deg, #0f6f39, var(--green));
+    }
+
+    .site-card::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: -54px;
+      top: -54px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .site-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      letter-spacing: -0.04em;
+    }
+
+    .site-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .site-meta {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+    }
+
+    .site-meta span {
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-band {
+      width: min(1180px, calc(100% - 40px));
+      margin: 50px auto 74px;
+      padding: 34px;
+      border-radius: calc(var(--radius) + 8px);
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-band h2 {
+      color: var(--white);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .contact-band p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: var(--white);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 26px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 58px;
+      }
+
+      .cards,
+      .sites {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-band {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav,
+      .hero,
+      section,
+      .contact-band,
+      .footer-inner {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Michigan LTC Network home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>Michigan LTC Network</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#workstreams">Workstreams</a>
+        <a href="#sites">Sites</a>
+        <a href="#partners">Partners</a>
+        <a class="nav-cta" href="mailto:info@michigan-ltc.org">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <span class="eyebrow">Resource Recovery Corridor</span>
+        <h1 id="hero-title">Cleaner reuse. Stronger local infrastructure.</h1>
+        <p class="lead">Michigan LTC Network is developing a governed, planning-first corridor for tire, rail-tie, biomass, and industrial material recovery across Michigan communities.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#workstreams">See the work plan</a>
+          <a class="button secondary" href="mailto:info@michigan-ltc.org">Start a conversation</a>
+        </div>
+      </div>
+
+      <aside class="hero-card map-card" aria-label="Project summary">
+        <div>
+          <span class="eyebrow">Planning stage</span>
+          <div class="route-line" aria-hidden="true"></div>
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>2</strong>
+              <span>initial corridor sites</span>
+            </div>
+            <div class="stat">
+              <strong>6</strong>
+              <span>planning workstreams</span>
+            </div>
+            <div class="stat">
+              <strong>60+</strong>
+              <span>potential local jobs</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>community-first planning</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <h2 id="about-title">A practical network for materials that should not be wasted.</h2>
+        <p>The corridor brings together site planning, environmental review, partner coordination, community engagement, and long-term operating controls before major capital deployment.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Governed by design</h3>
+          <p>Planning materials, decisions, assumptions, and partner roles are documented so the work can be reviewed, transferred, and improved over time.</p>
+        </article>
+        <article class="card">
+          <h3>Community benefit first</h3>
+          <p>The model centers local reuse, brownfield reinvestment, workforce development, and clear public communication.</p>
+        </article>
+        <article class="card">
+          <h3>Built for implementation</h3>
+          <p>The planning process is structured to move from concept into permitting, financing, procurement, and site-level deployment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="workstreams" aria-labelledby="workstreams-title">
+      <div class="section-head">
+        <h2 id="workstreams-title">Six coordinated workstreams.</h2>
+        <p>Each workstream is designed to reduce uncertainty, protect public trust, and make the corridor investment-ready.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>1. Site readiness</h3>
+          <p>Document parcel conditions, utility needs, transportation access, reuse constraints, and permitting path.</p>
+        </article>
+        <article class="card">
+          <h3>2. Feedstock validation</h3>
+          <p>Confirm available material streams, logistics assumptions, storage needs, and partner commitments.</p>
+        </article>
+        <article class="card">
+          <h3>3. Environmental method</h3>
+          <p>Build defensible baselines and emissions-accounting methods suitable for funders and regulators.</p>
+        </article>
+        <article class="card">
+          <h3>4. Community engagement</h3>
+          <p>Create plain-language materials, meeting records, feedback loops, and host-community commitments.</p>
+        </article>
+        <article class="card">
+          <h3>5. Finance and governance</h3>
+          <p>Map grants, tax tools, private capital, operating agreements, and accountability controls.</p>
+        </article>
+        <article class="card">
+          <h3>6. Implementation roadmap</h3>
+          <p>Translate planning into a sequenced path for engineering, permitting, procurement, and operations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="sites" aria-labelledby="sites-title">
+      <div class="section-head">
+        <h2 id="sites-title">Initial corridor sites.</h2>
+        <p>The current planning focus is a two-site corridor anchored by complementary recovery and logistics opportunities.</p>
+      </div>
+      <div class="sites">
+        <article class="site-card">
+          <div>
+            <h3>Coleman</h3>
+            <p>Midland County planning site with on-site feedstock opportunities and co-location potential.</p>
+          </div>
+          <div class="site-meta">
+            <span>Resource recovery</span>
+            <span>Co-location</span>
+            <span>Site planning</span>
+          </div>
+        </article>
+        <article class="site-card green">
+          <div>
+            <h3>Flint ERR</h3>
+            <p>Brownfield-aligned recovery site with logistics, rail access, and existing materials-reuse history.</p>
+          </div>
+          <div class="site-meta">
+            <span>Brownfield reuse</span>
+            <span>Rail access</span>
+            <span>Community jobs</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="partners" aria-labelledby="partners-title">
+      <div class="section-head">
+        <h2 id="partners-title">Partner-ready, public-ready.</h2>
+        <p>The network is structured for public agencies, industrial partners, host communities, funders, and technical reviewers who need a clear record of what is being proposed and why it matters.</p>
+        <div class="pill-row" aria-label="Focus areas">
+          <span class="pill">Materials recovery</span>
+          <span class="pill">Brownfield reinvestment</span>
+          <span class="pill">GHG methodology</span>
+          <span class="pill">Workforce development</span>
+          <span class="pill">Community engagement</span>
+          <span class="pill">Implementation controls</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="contact-band" id="contact" aria-labelledby="contact-title">
+      <div>
+        <h2 id="contact-title">Ready to talk corridor planning?</h2>
+        <p>For partner inquiries, site coordination, or public-sector conversations, contact the Michigan LTC Network team.</p>
+      </div>
+      <a class="button secondary" href="mailto:info@michigan-ltc.org">info@michigan-ltc.org</a>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>&copy; 2026 Michigan LTC Network. All rights reserved.</span>
+      <span>Resource recovery corridor planning and implementation.</span>
+    </div>
+  </footer>
+</body>
+</html>
