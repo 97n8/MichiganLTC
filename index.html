@@ -4,660 +4,338 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Michigan LTC Network | Resource Recovery Corridor</title>
-  <meta name="description" content="Michigan LTC Network is building a governed resource recovery corridor for cleaner materials management, community benefit, and long-term industrial reuse." />
-  <style>
-    :root {
-      --navy: #092b5f;
-      --blue: #155aa8;
-      --green: #11843b;
-      --gold: #d7a842;
-      --ink: #172033;
-      --muted: #5f6b7a;
-      --mist: #eef4f1;
-      --white: #ffffff;
-      --line: rgba(9, 43, 95, 0.14);
-      --shadow: 0 24px 60px rgba(9, 43, 95, 0.12);
-      --radius: 22px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: linear-gradient(180deg, #ffffff 0%, #f7faf8 52%, #edf5f0 100%);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--navy);
-      font-size: 1.12rem;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--navy), var(--green));
-      color: var(--white);
-      box-shadow: 0 10px 24px rgba(17, 132, 59, 0.18);
-      font-size: 1.2rem;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #314056;
-      font-weight: 650;
-      font-size: 0.94rem;
-    }
-
-    .nav-links a {
-      padding: 10px 12px;
-      border-radius: 999px;
-    }
-
-    .nav-links a:hover {
-      background: var(--mist);
-      color: var(--navy);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border-radius: 999px;
-      color: var(--white) !important;
-      background: var(--green);
-      box-shadow: 0 10px 24px rgba(17, 132, 59, 0.22);
-    }
-
-    main {
-      overflow: hidden;
-    }
-
-    .hero {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 86px 0 72px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-      gap: 48px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--green);
-      font-weight: 800;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 22px 0 18px;
-      color: var(--navy);
-      font-size: clamp(3rem, 7vw, 6.4rem);
-      line-height: 0.94;
-      letter-spacing: -0.07em;
-    }
-
-    .lead {
-      max-width: 690px;
-      color: #334155;
-      font-size: clamp(1.1rem, 2vw, 1.32rem);
-      margin: 0 0 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 800;
-      border: 1px solid transparent;
-    }
-
-    .button.primary {
-      color: var(--white);
-      background: var(--navy);
-      box-shadow: var(--shadow);
-    }
-
-    .button.secondary {
-      color: var(--navy);
-      background: var(--white);
-      border-color: var(--line);
-    }
-
-    .hero-card {
-      position: relative;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: calc(var(--radius) + 10px);
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow);
-    }
-
-    .map-card {
-      min-height: 380px;
-      display: grid;
-      align-content: end;
-      gap: 18px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(17, 132, 59, 0.18), transparent 35%),
-        radial-gradient(circle at 80% 40%, rgba(21, 90, 168, 0.16), transparent 36%),
-        linear-gradient(135deg, #ffffff, #edf6f1);
-    }
-
-    .route-line {
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--navy), var(--green));
-      position: relative;
-      margin: 36px 0 18px;
-    }
-
-    .route-line::before,
-    .route-line::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 22px;
-      height: 22px;
-      transform: translateY(-50%);
-      border-radius: 50%;
-      background: var(--white);
-      border: 6px solid var(--green);
-      box-shadow: 0 0 0 8px rgba(17, 132, 59, 0.12);
-    }
-
-    .route-line::before {
-      left: 12%;
-      border-color: var(--navy);
-    }
-
-    .route-line::after {
-      right: 16%;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid var(--line);
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--navy);
-      font-size: 1.55rem;
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    section {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 72px 0;
-    }
-
-    .section-head {
-      max-width: 790px;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      color: var(--navy);
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1;
-      letter-spacing: -0.055em;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      min-height: 220px;
-      padding: 24px;
-      border-radius: var(--radius);
-      background: var(--white);
-      border: 1px solid var(--line);
-      box-shadow: 0 14px 38px rgba(9, 43, 95, 0.07);
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      color: var(--navy);
-      font-size: 1.18rem;
-      letter-spacing: -0.02em;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .pill {
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: var(--mist);
-      color: var(--navy);
-      font-weight: 750;
-      font-size: 0.84rem;
-    }
-
-    .sites {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .site-card {
-      padding: 28px;
-      border-radius: var(--radius);
-      color: var(--white);
-      background: linear-gradient(135deg, var(--navy), #0c457e);
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .site-card.green {
-      background: linear-gradient(135deg, #0f6f39, var(--green));
-    }
-
-    .site-card::after {
-      content: "";
-      position: absolute;
-      width: 190px;
-      height: 190px;
-      right: -54px;
-      top: -54px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .site-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.8rem;
-      letter-spacing: -0.04em;
-    }
-
-    .site-card p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    .site-meta {
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      position: relative;
-    }
-
-    .site-meta span {
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .contact-band {
-      width: min(1180px, calc(100% - 40px));
-      margin: 50px auto 74px;
-      padding: 34px;
-      border-radius: calc(var(--radius) + 8px);
-      background: var(--navy);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-band h2 {
-      color: var(--white);
-      font-size: clamp(1.8rem, 4vw, 3rem);
-    }
-
-    .contact-band p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.78);
-    }
-
-    .site-footer {
-      border-top: 1px solid var(--line);
-      background: var(--white);
-      color: var(--muted);
-    }
-
-    .footer-inner {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 26px 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 900px) {
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 16px 0;
-      }
-
-      .nav-links {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 58px;
-      }
-
-      .cards,
-      .sites {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-band {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .nav,
-      .hero,
-      section,
-      .contact-band,
-      .footer-inner {
-        width: min(100% - 28px, 1180px);
-      }
-
-      .nav-links a:not(.nav-cta) {
-        display: none;
-      }
-
-      .stat-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card {
-        padding: 18px;
-      }
-    }
-  </style>
+  <meta name="description" content="Michigan LTC Network is developing a governed, planning-first resource recovery corridor anchored by authorized project sites in Coleman and Flint, Michigan." />
+  <meta property="og:title" content="Michigan LTC Network | Resource Recovery Corridor" />
+  <meta property="og:description" content="A governed, planning-first resource recovery corridor anchored by authorized sites in Coleman and Flint, Michigan." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Michigan LTC Network",
+    "description": "Governed planning organization developing a resource recovery corridor at authorized sites in Coleman and Flint, Michigan.",
+    "email": "info@michigan-ltc.org",
+    "areaServed": "Michigan, United States"
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Michigan LTC Network home">
+      <a class="brand" href="index.html" aria-label="Michigan LTC Network home">
         <span class="brand-mark" aria-hidden="true">M</span>
-        <span>Michigan LTC Network</span>
+        <span>Michigan LTC Network<small>Resource Recovery Corridor</small></span>
       </a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#workstreams">Workstreams</a>
-        <a href="#sites">Sites</a>
-        <a href="#partners">Partners</a>
-        <a class="nav-cta" href="mailto:info@michigan-ltc.org">Contact</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="nav-links" id="site-nav">
+        <a href="about.html">About</a>
+        <a href="sites.html">Sites</a>
+        <a href="workstreams.html">Workstreams</a>
+        <a href="funding.html">Funding</a>
+        <a href="community.html">Community</a>
+        <a href="governance.html">Governance</a>
+        <a href="workspace.html">Workspace</a>
+        <a class="nav-cta" href="contact.html">Contact</a>
       </div>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div>
+  <main id="main">
+    <div class="hero-photo" aria-labelledby="hero-title">
+      <img src="assets/img/photos/flint-saginaw-street.jpg" alt="The Vehicle City arch over Saginaw Street in downtown Flint, Michigan, on a summer day" fetchpriority="high" />
+      <div class="hero-inner">
         <span class="eyebrow">Resource Recovery Corridor</span>
         <h1 id="hero-title">Cleaner reuse. Stronger local infrastructure.</h1>
-        <p class="lead">Michigan LTC Network is developing a governed, planning-first corridor for tire, rail-tie, biomass, and industrial material recovery across Michigan communities.</p>
+        <p class="lead">Michigan LTC Network is planning a two-site corridor for tire, rail-tie, biomass, and industrial material recovery in Coleman and Flint — documented, source-disciplined, and built to earn public trust before capital is deployed.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#workstreams">See the work plan</a>
-          <a class="button secondary" href="mailto:info@michigan-ltc.org">Start a conversation</a>
+          <a class="button green" href="workstreams.html">See the work plan</a>
+          <a class="button secondary" href="sites.html">Explore the sites</a>
         </div>
       </div>
+      <span class="photo-credit">Saginaw Street, Flint · photo: <a href="https://commons.wikimedia.org/wiki/File:Flint_July_2018_03_(Saginaw_Street).jpg" rel="noopener">Michael Barera, CC BY-SA 4.0</a></span>
+    </div>
 
-      <aside class="hero-card map-card" aria-label="Project summary">
-        <div>
-          <span class="eyebrow">Planning stage</span>
-          <div class="route-line" aria-hidden="true"></div>
-          <div class="stat-grid">
-            <div class="stat">
-              <strong>2</strong>
-              <span>initial corridor sites</span>
-            </div>
-            <div class="stat">
-              <strong>6</strong>
-              <span>planning workstreams</span>
-            </div>
-            <div class="stat">
-              <strong>60+</strong>
-              <span>potential local jobs</span>
-            </div>
-            <div class="stat">
-              <strong>100%</strong>
-              <span>community-first planning</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
+    <div class="stat-band" aria-label="Corridor summary">
+      <div class="stat">
+        <strong>2</strong>
+        <span>authorized corridor sites — Coleman &amp; Flint</span>
+      </div>
+      <div class="stat">
+        <strong>6</strong>
+        <span>planning workstreams</span>
+      </div>
+      <div class="stat">
+        <strong>7</strong>
+        <span>governance registers</span>
+      </div>
+      <div class="stat">
+        <strong>9</strong>
+        <span>working templates</span>
+      </div>
+    </div>
 
-    <section id="about" aria-labelledby="about-title">
+    <section aria-labelledby="about-title" class="reveal">
       <div class="section-head">
+        <span class="eyebrow">Why this network</span>
         <h2 id="about-title">A practical network for materials that should not be wasted.</h2>
-        <p>The corridor brings together site planning, environmental review, partner coordination, community engagement, and long-term operating controls before major capital deployment.</p>
+        <p>Scrap tires, retired rail ties, biomass, and industrial byproducts pile up in every county. The corridor brings together site planning, environmental review, partner coordination, community engagement, and long-term operating controls before major capital deployment.</p>
+      </div>
+      <div class="photo-duo" style="margin-bottom:18px;">
+        <figure class="photo-figure">
+          <img src="assets/img/photos/scrap-tires.jpg" alt="Stacks of discarded car tires overgrown with weeds along a chain-link fence" loading="lazy" />
+          <figcaption>
+            <span>The problem: scrap tires stockpiled where they were left.</span>
+            <span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Old_tires_stacked_near_a_fence_with_grass_growing_on_top.jpg" rel="noopener">Shixart1985, CC BY 2.0</a></span>
+          </figcaption>
+        </figure>
+        <figure class="photo-figure">
+          <img src="assets/img/photos/mrf-exterior.jpg" alt="Visitors watch a wheel loader move mixed recyclables inside a material recovery facility" loading="lazy" />
+          <figcaption>
+            <span>The alternative: materials recovered at a working facility.</span>
+            <span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Sims_Sunset_Park_Material_Recovery_Facility_-6.jpg" rel="noopener">Anahita Rouzbeh, CC BY-SA 4.0</a></span>
+          </figcaption>
+        </figure>
       </div>
       <div class="cards">
         <article class="card">
+          <span class="card-kicker">Governance</span>
           <h3>Governed by design</h3>
-          <p>Planning materials, decisions, assumptions, and partner roles are documented so the work can be reviewed, transferred, and improved over time.</p>
+          <p>Planning materials, decisions, assumptions, and partner roles are documented in registers so the work can be reviewed, transferred, and improved over time.</p>
         </article>
         <article class="card">
+          <span class="card-kicker">Community</span>
           <h3>Community benefit first</h3>
-          <p>The model centers local reuse, brownfield reinvestment, workforce development, and clear public communication.</p>
+          <p>The model centers local reuse, brownfield reinvestment, workforce development planning, and clear public communication.</p>
         </article>
         <article class="card">
+          <span class="card-kicker">Delivery</span>
           <h3>Built for implementation</h3>
           <p>The planning process is structured to move from concept into permitting, financing, procurement, and site-level deployment.</p>
         </article>
       </div>
+      <div class="pill-row" aria-label="Focus areas">
+        <span class="pill">Materials recovery</span>
+        <span class="pill">Brownfield reinvestment</span>
+        <span class="pill">GHG methodology</span>
+        <span class="pill">Workforce development</span>
+        <span class="pill">Community engagement</span>
+        <span class="pill">Implementation controls</span>
+      </div>
     </section>
 
-    <section id="workstreams" aria-labelledby="workstreams-title">
+    <section aria-labelledby="workstreams-title" class="reveal">
       <div class="section-head">
+        <span class="eyebrow">Work plan</span>
         <h2 id="workstreams-title">Six coordinated workstreams.</h2>
         <p>Each workstream is designed to reduce uncertainty, protect public trust, and make the corridor investment-ready.</p>
       </div>
       <div class="cards">
-        <article class="card">
-          <h3>1. Site readiness</h3>
-          <p>Document parcel conditions, utility needs, transportation access, reuse constraints, and permitting path.</p>
+        <article class="card link-card">
+          <div>
+            <span class="num-badge">1</span>
+            <h3>Site readiness</h3>
+            <p>Document parcel conditions, utility needs, transportation access, reuse constraints, and permitting path.</p>
+          </div>
+          <a class="card-arrow" href="workstreams.html#site-readiness">Learn more →</a>
         </article>
-        <article class="card">
-          <h3>2. Feedstock validation</h3>
-          <p>Confirm available material streams, logistics assumptions, storage needs, and partner commitments.</p>
+        <article class="card link-card">
+          <div>
+            <span class="num-badge">2</span>
+            <h3>Feedstock validation</h3>
+            <p>Confirm available material streams, logistics assumptions, storage needs, and partner commitments.</p>
+          </div>
+          <a class="card-arrow" href="workstreams.html#feedstock">Learn more →</a>
         </article>
-        <article class="card">
-          <h3>3. Environmental method</h3>
-          <p>Build defensible baselines and emissions-accounting methods suitable for funders and regulators.</p>
+        <article class="card link-card">
+          <div>
+            <span class="num-badge">3</span>
+            <h3>Environmental method</h3>
+            <p>Build defensible baselines and emissions-accounting methods suitable for funders and regulators.</p>
+          </div>
+          <a class="card-arrow" href="workstreams.html#environmental">Learn more →</a>
         </article>
-        <article class="card">
-          <h3>4. Community engagement</h3>
-          <p>Create plain-language materials, meeting records, feedback loops, and host-community commitments.</p>
+        <article class="card link-card">
+          <div>
+            <span class="num-badge">4</span>
+            <h3>Community engagement</h3>
+            <p>Create plain-language materials, meeting records, feedback loops, and host-community commitments.</p>
+          </div>
+          <a class="card-arrow" href="workstreams.html#engagement">Learn more →</a>
         </article>
-        <article class="card">
-          <h3>5. Finance and governance</h3>
-          <p>Map grants, tax tools, private capital, operating agreements, and accountability controls.</p>
+        <article class="card link-card">
+          <div>
+            <span class="num-badge">5</span>
+            <h3>Finance and governance</h3>
+            <p>Map grants, tax tools, private capital, operating agreements, and accountability controls.</p>
+          </div>
+          <a class="card-arrow" href="workstreams.html#finance">Learn more →</a>
         </article>
-        <article class="card">
-          <h3>6. Implementation roadmap</h3>
-          <p>Translate planning into a sequenced path for engineering, permitting, procurement, and operations.</p>
+        <article class="card link-card">
+          <div>
+            <span class="num-badge">6</span>
+            <h3>Implementation roadmap</h3>
+            <p>Translate planning into a sequenced path for engineering, permitting, procurement, and operations.</p>
+          </div>
+          <a class="card-arrow" href="workstreams.html#roadmap">Learn more →</a>
         </article>
       </div>
     </section>
 
-    <section id="sites" aria-labelledby="sites-title">
+    <section aria-labelledby="sites-title" class="reveal">
       <div class="section-head">
-        <h2 id="sites-title">Initial corridor sites.</h2>
-        <p>The current planning focus is a two-site corridor anchored by complementary recovery and logistics opportunities.</p>
+        <span class="eyebrow">Corridor sites</span>
+        <h2 id="sites-title">Two authorized planning sites.</h2>
+        <p>The current planning focus is a two-site corridor anchored by complementary recovery and logistics opportunities. New sites require written addenda and documented routing.</p>
       </div>
       <div class="sites">
-        <article class="site-card">
-          <div>
+        <article class="site-card photo">
+          <img src="assets/img/photos/coleman-main-street.jpg" alt="Historic real-photo postcard of Main Street in Coleman, Michigan, with the State Bank building on the corner" loading="lazy" />
+          <span class="photo-credit">Main Street, Coleman, Mich. · <a href="https://commons.wikimedia.org/wiki/File:Coleman_MI.jpg" rel="noopener">public domain</a></span>
+          <div class="site-card-body">
             <h3>Coleman</h3>
             <p>Midland County planning site with on-site feedstock opportunities and co-location potential.</p>
-          </div>
-          <div class="site-meta">
-            <span>Resource recovery</span>
-            <span>Co-location</span>
-            <span>Site planning</span>
+            <div class="site-meta">
+              <span>Resource recovery</span>
+              <span>Co-location</span>
+              <a href="sites.html#coleman">Site file →</a>
+            </div>
           </div>
         </article>
-        <article class="site-card green">
-          <div>
-            <h3>Flint ERR</h3>
-            <p>Brownfield-aligned recovery site with logistics, rail access, and existing materials-reuse history.</p>
-          </div>
-          <div class="site-meta">
-            <span>Brownfield reuse</span>
-            <span>Rail access</span>
-            <span>Community jobs</span>
+        <article class="site-card photo">
+          <img src="assets/img/photos/flint-river.jpg" alt="The Flint River flowing through downtown Flint, Michigan, with buildings reflected in the water" loading="lazy" />
+          <span class="photo-credit">Flint River, downtown Flint · <a href="https://commons.wikimedia.org/wiki/File:Flint_River_in_Flint_MIchigan.jpg" rel="noopener">USACE, public domain</a></span>
+          <div class="site-card-body">
+            <h3>Flint</h3>
+            <p>Brownfield-aligned recovery planning site with logistics access and existing materials-reuse history.</p>
+            <div class="site-meta">
+              <span>Brownfield reuse</span>
+              <span>Logistics access</span>
+              <a href="sites.html#flint">Site file →</a>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="partners" aria-labelledby="partners-title">
+    <section aria-labelledby="principles-title" class="reveal">
       <div class="section-head">
-        <h2 id="partners-title">Partner-ready, public-ready.</h2>
-        <p>The network is structured for public agencies, industrial partners, host communities, funders, and technical reviewers who need a clear record of what is being proposed and why it matters.</p>
-        <div class="pill-row" aria-label="Focus areas">
-          <span class="pill">Materials recovery</span>
-          <span class="pill">Brownfield reinvestment</span>
-          <span class="pill">GHG methodology</span>
-          <span class="pill">Workforce development</span>
-          <span class="pill">Community engagement</span>
-          <span class="pill">Implementation controls</span>
+        <span class="eyebrow">Operating principles</span>
+        <h2 id="principles-title">The rules the project runs on.</h2>
+        <p>Five principles govern every document, claim, and decision the project produces.</p>
+      </div>
+      <div class="steps" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="step">
+          <h3>Source discipline</h3>
+          <p>Record what is known, where it came from, and what still needs verification.</p>
+        </div>
+        <div class="step">
+          <h3>No unsupported claims</h3>
+          <p>No awards, permits, or outcomes stated without a cited source.</p>
+        </div>
+        <div class="step">
+          <h3>Written-addendum control</h3>
+          <p>New sites and scope changes require written documentation and routing.</p>
+        </div>
+        <div class="step">
+          <h3>Clear ownership</h3>
+          <p>Every deliverable, issue, and decision has an owner or responsible route.</p>
+        </div>
+        <div class="step">
+          <h3>Audit-ready work</h3>
+          <p>Reviewers can trace source support, status, and approval history.</p>
         </div>
       </div>
     </section>
 
-    <aside class="contact-band" id="contact" aria-labelledby="contact-title">
+    <figure class="photo-strip reveal">
+      <img src="assets/img/photos/rail-ties.jpg" alt="A large stack of retired wooden railroad ties with rusted tie plates, viewed end-on" loading="lazy" />
+      <figcaption>
+        <span class="strip-inner">
+          <span>Retired rail ties — one of the corridor's candidate material streams.</span>
+          <span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Stack_of_railroad_ties_-_Fitchburg_Cutoff_-_Belmont,_MA.jpg" rel="noopener">Daderot, CC0</a></span>
+        </span>
+      </figcaption>
+    </figure>
+
+    <section aria-labelledby="workspace-title" class="reveal tight">
+      <div class="split">
+        <div class="panel navy">
+          <span class="eyebrow" style="color:#8fd1a8; border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06);">Project workspace</span>
+          <h3 style="font-size:1.6rem; margin-top:14px;">One governed workspace for every record.</h3>
+          <p>Registers, site files, funding trackers, templates, and source records live in a single audit-ready repository — organized so any reviewer can find status, sources, and approvals.</p>
+          <div class="pill-row">
+            <span class="pill" style="background: rgba(255,255,255,0.12); color:#fff;">Decision log</span>
+            <span class="pill" style="background: rgba(255,255,255,0.12); color:#fff;">Risk register</span>
+            <span class="pill" style="background: rgba(255,255,255,0.12); color:#fff;">Source register</span>
+            <span class="pill" style="background: rgba(255,255,255,0.12); color:#fff;">Site files</span>
+          </div>
+          <p style="margin-top:22px;"><a class="button secondary" href="workspace.html">Enter the workspace</a></p>
+        </div>
+        <div class="panel">
+          <h3 id="workspace-title">Supported by PublicLogic</h3>
+          <p class="lead-muted" style="margin-bottom:14px;">PublicLogic supports the network with governed delivery infrastructure:</p>
+          <ul class="check-list" style="color: var(--muted);">
+            <li>Governance and program coordination</li>
+            <li>Funding coordination and documentation management</li>
+            <li>Implementation planning</li>
+            <li>Training and continuity support</li>
+            <li>Authorized tooling support</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <aside class="contact-band" aria-labelledby="contact-title">
       <div>
         <h2 id="contact-title">Ready to talk corridor planning?</h2>
         <p>For partner inquiries, site coordination, or public-sector conversations, contact the Michigan LTC Network team.</p>
       </div>
-      <a class="button secondary" href="mailto:info@michigan-ltc.org">info@michigan-ltc.org</a>
+      <a class="button secondary" href="contact.html">Contact &amp; routing</a>
     </aside>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <span>&copy; 2026 Michigan LTC Network. All rights reserved.</span>
-      <span>Resource recovery corridor planning and implementation.</span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Michigan LTC Network</h3>
+        <p>A governed, planning-first resource recovery corridor for the authorized project sites in Coleman and Flint, Michigan.</p>
+      </div>
+      <div>
+        <h3>Project</h3>
+        <ul>
+          <li><a href="about.html">About the network</a></li>
+          <li><a href="sites.html">Corridor sites</a></li>
+          <li><a href="workstreams.html">Workstreams</a></li>
+          <li><a href="funding.html">Funding</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Accountability</h3>
+        <ul>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="governance.html">Governance</a></li>
+          <li><a href="workspace.html">Project workspace</a></li>
+          <li><a href="contact.html">Contact &amp; routing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@michigan-ltc.org">info@michigan-ltc.org</a></li>
+          <li><a href="https://github.com/97n8/MichiganLTC" rel="noopener">Governed repository</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>&copy; <span data-year>2026</span> Michigan LTC Network. All rights reserved.</span>
+      <span>Statements on this site are planning-stage and subject to source verification.</span>
     </div>
   </footer>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

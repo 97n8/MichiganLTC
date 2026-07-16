@@ -54,6 +54,19 @@ This repository may contain draft, internal, confidential, investor-sensitive, l
 /
 ├── README.md
 ├── .gitignore
+├── index.html            (public site: home)
+├── about.html            (public site: about)
+├── sites.html            (public site: corridor sites)
+├── workstreams.html      (public site: workstreams)
+├── funding.html          (public site: funding)
+├── community.html        (public site: community)
+├── governance.html       (public site: governance overview)
+├── workspace.html        (public site: workspace map)
+├── contact.html          (public site: contact and routing)
+├── assets/
+│   ├── css/site.css
+│   ├── js/site.js
+│   └── img/mark.svg
 ├── docs/
 │   ├── engagement/
 │   ├── grant-submissions/
